@@ -1,13 +1,28 @@
-version: '3'
+version: '3.8'
+
 services:
   db:
-    image: mysql:latest
+    image: postgres:15
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: M1e2h3d4i5
-      MYSQL_DATABASE: the_maze_db
-      MYSQL_PASSWORD: M1e2h3d4i5
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: M1e2h3d4i5
+      POSTGRES_DB: CyberSummit
     volumes:
-      - ./data:/var/lib/mysql
+      - ./data:/var/lib/postgresql/data
     ports:
-      - '3306:3306'
+      - '5432:5432'
+  backend:
+    build: .
+    container_name: nest_backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:M1e2h3d4i5@db:5432/CyberSummit
+    ports:
+      - "3000:3000"
+    command: sh -c "npx prisma migrate deploy && npm run start:prod"
+
+volumes:
+  postgres_data:

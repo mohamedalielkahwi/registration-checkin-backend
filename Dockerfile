@@ -1,15 +1,31 @@
-FROM node:18 AS build
+# ---------- Build stage ----------
+FROM node:18-alpine AS build
+
 WORKDIR /app
-#
-COPY package.json .
-COPY package-lock.json .
-RUN npm install
+
+COPY package*.json ./
+RUN npm ci
+
 COPY . .
-COPY .env.dev .env
+
 RUN npx prisma generate
-RUN npx prisma db push --force-reset
-RUN npm run seed
 RUN npm run build
-WORKDIR /app/dist
-EXPOSE 80
-CMD ["npm","run", "start"]
+
+
+# ---------- Production stage ----------
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=build /app/prisma ./prisma
+
+COPY .env.dev .env
+
+EXPOSE 3000
+
+CMD ["node", "dist/src/main"]
