@@ -1,31 +1,47 @@
-# ---------- Build stage ----------
-FROM node:18-alpine AS build
+# ================================
+# Stage 1: Builder
+# ================================
+FROM node:18-slim AS builder
 
 WORKDIR /app
 
+# OpenSSL is required by Prisma's native query/migration engine binaries
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 COPY package*.json ./
+COPY prisma ./prisma/
+
 RUN npm ci
 
-COPY . .
-
+# Generate Prisma client for the target platform
 RUN npx prisma generate
+
+# Copy source and build
+COPY . .
 RUN npm run build
 
 
-# ---------- Production stage ----------
-FROM node:18-alpine
+# ================================
+# Stage 2: Production
+# ================================
+FROM node:18-slim AS production
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
+# Install only production dependencies
 COPY package*.json ./
-RUN npm ci --omit=dev
+COPY prisma ./prisma/
 
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=build /app/prisma ./prisma
+RUN npm ci --only=production && npx prisma generate
 
-COPY .env.dev .env
+# Copy built app from builder
+COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["node", "dist/src/main"]
+# Run migrations then start the app
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main"]

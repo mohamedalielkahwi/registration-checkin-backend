@@ -1,28 +1,45 @@
-version: '3.8'
-
 services:
+  # ─────────────────────────────────────────
+  # PostgreSQL Database
+  # ─────────────────────────────────────────
   db:
-    image: postgres:15
-    restart: always
+    image: postgres:16-alpine
+    container_name: cyber_summit_db
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: M1e2h3d4i5
-      POSTGRES_DB: CyberSummit
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-cyber_summit}
+    ports:
+      - "${DB_PORT:-5432}:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-cyber_summit}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────
+  # NestJS Backend
+  # ─────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: cyber_summit_api
+    restart: unless-stopped
     ports:
-      - '5432:5432'
-  backend:
-    build: .
-    container_name: nest_backend
-    restart: always
-    depends_on:
-      - db
+      - "${APP_PORT:-3000}:3000"
     environment:
-      DATABASE_URL: postgresql://postgres:M1e2h3d4i5@db:5432/CyberSummit
-    ports:
-      - "3000:3000"
-    command: sh -c "npx prisma migrate deploy && npm run start:prod"
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-cyber_summit}
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   postgres_data:
