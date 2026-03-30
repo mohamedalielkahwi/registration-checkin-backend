@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+  binaryTargets   = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StudyLevel {
+  FIRST
+  SECOND
+  THIRD
+}
+
+enum Specialization {
+  LICENSE
+  MASTER
+  DOCTORAT
+  ENGINEER
+  PREPARATORY
+  OTHER
+}
+
+enum Session {
+  first
+  second
+}
+
+model Fac {
+  id   String @id @default(uuid())
+  name String @unique
+
+  attendees Attendee[]
+}
+
+model Team {
+  id   String @id @default(uuid())
+  name String @unique
+
+  members Attendee[] @relation(name: "AttendeeToTeam")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Attendee {
+  id String @id @default(uuid())
+
+  name  String
+  email String @unique
+  phone String @unique
+
+  studyLevel     StudyLevel?
+  specialization Specialization?
+
+  teamId String?
+  team   Team?   @relation(fields: [teamId], references: [id], name: "AttendeeToTeam")
+
+  workshpOnly Boolean @default(false)
+
+  ticketId String @unique
+  ticket   Ticket @relation(fields: [ticketId], references: [ticketNo], name: "AttendeeToTicket", onDelete: Cascade)
+
+  facId String?
+  fac   Fac?    @relation(fields: [facId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Ticket {
+  ticketNo    String              @id @default(uuid())
+  isCheckedIn Boolean             @default(false)
+  isPaid      Boolean             @default(false)
+  hadMeal     Boolean             @default(false)
+  hadLunch    Boolean             @default(false)
+  attendee    Attendee?           @relation("AttendeeToTicket")
+  workshops   WorkshopsByTicket[] @relation()
+  workshopId  String?
+  shortCode   String              @unique
+
+  adminId String?
+  admin   admins? @relation(fields: [adminId], references: [id], name: "AdminToTicket")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WorkshopsByTicket {
+  hasAttended Boolean @default(false)
+
+  ticketId String
+  ticket   Ticket @relation(fields: [ticketId], references: [ticketNo], onDelete: Cascade)
+
+  workshopId String
+  workshop   Workshop @relation(fields: [workshopId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([ticketId, workshopId])
+}
+
+model Workshop {
+  id   String @id @default(uuid())
+  name String
+
+  tickets WorkshopsByTicket[] @relation()
+
+  session Session
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model admins {
+  id   String @id @default(uuid())
+  name String
+
+  tickets Ticket[] @relation("AdminToTicket")
+}

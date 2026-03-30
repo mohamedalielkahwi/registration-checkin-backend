@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Your Workshops - Coder X Coder Event!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      padding: 2rem 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #1a1a1a;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      color: #444;
+    }
+
+    .greeting {
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .greeting strong {
+      color: #000;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem 0;
+      color: #1a1a1a;
+    }
+
+    .workshop-session {
+      padding: 1.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: #f9f9f9;
+    }
+
+    .workshop-session h2 {
+      margin-top: 0;
+      color: #1a1a1a;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .workshop-session h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #666;
+    }
+
+    ul {
+      list-style: none;
+      margin: 1rem 0 1.5rem 0;
+      padding-left: 0;
+    }
+
+    li {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      position: relative;
+      color: #444;
+      border-left: 3px solid #4CAF50;
+      margin-bottom: 0.75rem;
+      background: white;
+      border-radius: 4px;
+    }
+
+    li::before {
+      content: "✓";
+      position: absolute;
+      left: 0.5rem;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    strong {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .important {
+      padding: 1.25rem;
+      border: 2px solid #ff9800;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      background: #fff3e0;
+    }
+
+    .important p {
+      margin: 0;
+      color: #e65100;
+      font-weight: 500;
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: #4CAF50;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #45a049;
+    }
+
+    .instructions {
+      padding: 1.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: #f9f9f9;
+    }
+
+    .instructions h2 {
+      margin-top: 0;
+      color: #1a1a1a;
+    }
+
+    .instructions ol {
+      list-style: decimal;
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .instructions li {
+      border-left: none;
+      background: transparent;
+      padding: 0.5rem 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .instructions li::before {
+      content: none;
+    }
+
+    .note {
+      padding: 1rem;
+      border: 1px solid #2196F3;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+      background: #e3f2fd;
+    }
+
+    .note p {
+      margin: 0;
+      color: #1565c0;
+      font-size: 0.95rem;
+    }
+
+    .social-media {
+      padding: 1.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: #f9f9f9;
+    }
+
+    .social-media h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .social-media a {
+      display: block;
+      color: #0066cc;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .social-media a:hover {
+      text-decoration: underline;
+    }
+
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .signature {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      p, li {
+        font-size: 0.95rem;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎓 Select Your Workshops - Coder X Coder!</h1>
+
+  <p class="greeting">
+    Hello <strong>{{NAME}}</strong>,
+  </p>
+
+  <p>
+    Thank you for registering for Coder X Coder! We're excited to have you join us on <strong>February 14-15, 2025</strong> at Polytechnique Sousse.
+  </p>
+
+  <div class="important">
+    <p>
+      ⚠️ <strong>Action Required:</strong> You haven't selected your workshops yet! Please choose your workshops as soon as possible, as spots are limited.
+    </p>
+  </div>
+
+  <p>
+    As part of the event, we're offering exclusive workshops to enhance your skills. You need to select <strong>one workshop from each session</strong>:
+  </p>
+
+  <div class="workshop-session">
+    <h2>📚 Session 1 - Technical Track</h2>
+    <h3>Choose ONE of the following:</h3>
+    <ul>
+      <li><strong>N8N: Workflow Automation in Action</strong></li>
+      <li><strong>Backend: Clean Architecture & Best Practices</strong></li>
+      <li><strong>Design Patterns: Writing Scalable & Maintainable Code</strong></li>
+    </ul>
+  </div>
+
+  <div class="workshop-session">
+    <h2>🤖 Session 2 - AI & Strategy Track</h2>
+    <h3>Choose ONE of the following:</h3>
+    <ul>
+      <li><strong>Generative AI: Creating Generative Models from Scratch</strong></li>
+      <li><strong>How to Win a Hackathon: Keys to Hackathon Success</strong></li>
+    </ul>
+  </div>
+
+  <a href="https://registration.mic-issatso.me/workshop" class="cta-button" target="_blank">
+    🎯 Select Your Workshops Now
+  </a>
+
+  <div class="instructions">
+    <h2>📝 How to Select Your Workshops</h2>
+    <ol>
+      <li>Click the button above or visit: <strong>registration.mic-issatso.me/workshop</strong></li>
+      <li>Enter your registered email address</li>
+      <li>Select one workshop from Session 1</li>
+      <li>Select one workshop from Session 2</li>
+      <li>Submit your choices</li>
+    </ol>
+  </div>
+
+  <div class="note">
+    <p>
+      💡 <strong>Note:</strong> Each workshop has limited capacity, so make sure to register early to secure your preferred choices!
+    </p>
+  </div>
+
+  <p>
+    If you encounter any issues or have questions about the workshops, feel free to reach out to us:
+  </p>
+
+  <ul style="padding-left: 1.5rem;">
+    <li style="border-left: none; background: transparent;"><strong>📞 Phone:</strong> 53 282 993 or 25 171 692</li>
+    <li style="border-left: none; background: transparent;"><strong>✉️ Email:</strong> <a href="mailto:microsoftissatso@gmail.com">microsoftissatso@gmail.com</a></li>
+  </ul>
+
+  <div class="social-media">
+    <h3>📱 Stay Updated on Our Social Media</h3>
+    <a href="https://www.facebook.com/MicrosoftISSATSO" target="_blank">🔵 Facebook: MicrosoftISSATSO</a>
+    <a href="https://www.instagram.com/mic.issatso/" target="_blank">📷 Instagram: @mic.issatso</a>
+    <a href="https://www.linkedin.com/company/microsoft-issatso-club" target="_blank">💼 LinkedIn: Microsoft ISSATSO Club</a>
+  </div>
+
+  <div class="closing">
+    <p>We look forward to seeing you at the workshops! 🚀</p>
+    
+    <p>Warm regards,</p>
+    <p class="signature">Microsoft ISSATSO Team</p>
+  </div>
+</body>
+
+</html>

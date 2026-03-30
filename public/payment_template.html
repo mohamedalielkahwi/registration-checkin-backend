@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Coder X Coder Event!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      padding: 2rem 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #1a1a1a;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      color: #444;
+    }
+
+    .confirmation {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #22c55e;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .greeting {
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .greeting strong {
+      color: #000;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem 0;
+      color: #1a1a1a;
+    }
+
+    ul {
+      list-style: none;
+      margin: 1rem 0 1.5rem 0;
+      padding-left: 0;
+    }
+
+    li {
+      font-size: 1rem;
+      padding: 0.75rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #444;
+      border-left: 3px solid #ddd;
+      margin-bottom: 0.75rem;
+    }
+
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 0.5rem;
+      font-weight: bold;
+      color: #666;
+    }
+
+    strong {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .qrcode {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+    }
+
+    .qrcode img {
+      max-width: 100%;
+      height: auto;
+    }
+    .social-media {
+      padding: 1.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: #f9f9f9;
+    }
+
+    .social-media h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .social-media a {
+      display: block;
+      color: #0066cc;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .social-media a:hover {
+      text-decoration: underline;
+    }
+    .code-info {
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+
+    .code-info p {
+      margin: 0;
+    }
+
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .signature {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      p, li {
+        font-size: 0.95rem;
+      }
+
+      .qrcode {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to Coder X Coder Event! 🎉</h1>
+
+  <p class="confirmation">
+    ✅ Payment Confirmed!
+  </p>
+
+  <p class="greeting">
+    Hello <strong>{{NAME}}</strong>,
+  </p>
+
+  <p>
+    Thank you for registering for <strong>Coder X Coder</strong>! 💻✨
+  </p>
+
+  <p>
+    We're really happy and excited to see your interest in our event 😊
+  </p>
+
+  <h2>📌 Event Details</h2>
+  
+  <ul>
+    <li>📅 <strong>Date:</strong> February 14th-15th, 2026</li>
+    <li>📍 <strong>Location:</strong> Polytech School</li>
+    <li>⏰ <strong>Check-in Time:</strong> Starts at 11:30 AM on February 14th</li>
+    <li>🕐 <strong>Duration:</strong> 24-hour event</li>
+  </ul>
+
+  <h2>🎫 Your Check-in Information</h2>
+
+  <div class="qrcode">
+    <img src="{{QR_CODE}}" alt="QR Code" style="width: 700px; height: 200px" />
+  </div>
+
+  <div class="code-info">
+    <p>Or check in by showing this code: <strong>{{SHORT_CODE}}</strong></p>
+  </div>
+  
+  <div class="social-media">
+    <h3>📱 Follow Our Social Media for More Details</h3>
+    <a href="https://www.facebook.com/MicrosoftISSATSO" target="_blank">🔵 Facebook: MicrosoftISSATSO</a>
+    <a href="https://www.instagram.com/mic.issatso/" target="_blank">📷 Instagram: @mic.issatso</a>
+    <a href="https://www.linkedin.com/company/microsoft-issatso-club" target="_blank">💼 LinkedIn: Microsoft ISSATSO Club</a>
+  </div>
+
+  <div class="closing">
+    <p>Best of luck, and may the odds be ever in your favor!</p>
+    
+    <p>Warm regards,</p>
+    <p class="signature">Microsoft ISSATSO Team</p>
+  </div>
+</body>
+
+</html>
