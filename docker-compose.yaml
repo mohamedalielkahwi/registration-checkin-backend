@@ -43,12 +43,14 @@ services:
     build:
       context: ../registration-checkin-front
       dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${VITE_API_URL}
+        # Add more VITE_* variables here as needed:
+        # - VITE_SOME_OTHER_VAR=${VITE_SOME_OTHER_VAR}
     container_name: cyber_summit_frontend
     restart: unless-stopped
     ports:
       - "${FRONTEND_PORT:-8080}:80"
-    env_file:
-      - ../registration-checkin-front/.env  # Use the frontend .env file
     depends_on:
       - api
     networks:
