@@ -291,7 +291,7 @@ export class RegistrationService {
     //save data
     const { code } = await this.CreateRegistration(createRegistrationDto);
     const { email, name, isPaid } = createRegistrationDto;
-    const fullTicket = await this.overlayToTicket();
+    // const fullTicket = await this.overlayToTicket();
     //send email
     // if (isPaid) {
     //   await this.sendPaymentConfirmationEmail(email, name, fullTicket, code);
@@ -299,8 +299,7 @@ export class RegistrationService {
     //   await this.sendEmail(email, name);
     // }
     await this.refreshCache();
-
-    return `<img src="${fullTicket}" alt="Ticket" />`;
+    return { message: 'Registration successful' };
   }
 
   async getWorkshops(): Promise<GetWorkshopsResponse> {
@@ -400,6 +399,12 @@ export class RegistrationService {
                 isCheckedIn: true,
                 hadMeal: true,
                 shortCode: true,
+                admin:{
+                  select:{
+                    id:true,
+                    name:true,
+                  }
+                },
                 workshops: {
                   select: {
                     hasAttended: true,
@@ -594,13 +599,11 @@ export class RegistrationService {
   ) {
     const template = fs.readFileSync('public/payment_template.html', 'utf8');
     let content = template.replace('{{NAME}}', name);
-    content = content.replace('{{QR_CODE}}', qr);
-    content = content.replace('{{SHORT_CODE}}', shortcode);
     try {
       await this.mailerService.sendMail({
         to,
-        from: 'themazeevent@outlook.com',
-        subject: 'Coder X Coder – Registration Received 🚀',
+        from: 'cybersummit@outlook.com',
+        subject: 'Cyber Summit V4 – Registration Received 🚀',
         attachDataUrls: true,
         html: content,
       });
@@ -633,8 +636,8 @@ export class RegistrationService {
       try {
         await this.mailerService.sendMail({
           to: a.email,
-          from: 'themazeevent@outlook.com',
-          subject: 'Coder X Coder Workshop Reminder 🚀',
+          from: 'cybersummit@outlook.com',
+          subject: 'Cyber Summit V4 Workshop Reminder 🚀',
           html: content,
         });
       } catch (error) {
@@ -663,8 +666,8 @@ export class RegistrationService {
       try {
         await this.mailerService.sendMail({
           to: a.email,
-          from: 'themazeevent@outlook.com',
-          subject: 'Coder X Coder Payment Reminder 🚀',
+          from: 'cybersummit@outlook.com',
+          subject: 'Cyber Summit V4 Payment Reminder 🚀',
           html: content,
         });
       } catch (error) {
@@ -680,8 +683,8 @@ export class RegistrationService {
     try {
       await this.mailerService.sendMail({
         to: to,
-        from: 'cyberSummit@outlook.com',
-        subject: 'Payment Information – Coder X Coder 💳',
+        from: 'cybersummit@outlook.com',
+        subject: 'Payment Information – Cyber Summit 💳',
         text: 'welcome participant',
         attachDataUrls: true, //to accept base64 content in messsage
         html: content,

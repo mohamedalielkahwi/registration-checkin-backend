@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Coder X Coder Event!</title>
+  <title>Cybersummit 4th Edition - Payment Reminder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -91,13 +91,15 @@
 
     .important {
       padding: 1rem;
-      border: 1px solid #ddd;
+      border: 1px solid #ff6b6b;
       border-radius: 4px;
       margin: 1.5rem 0;
+      background: #fff5f5;
     }
 
     .important p {
       margin: 0;
+      color: #c92a2a;
     }
 
     .event-details {
@@ -118,42 +120,42 @@
       margin-bottom: 0.75rem;
     }
 
-    .pricing {
-      padding: 1.25rem;
+    .payment-methods {
+      padding: 1.5rem;
       border: 2px solid #e0e0e0;
-      border-radius: 6px;
+      border-radius: 8px;
       margin: 1.5rem 0;
     }
 
-    .pricing h2 {
+    .payment-methods h2 {
       margin-top: 0;
-      color: #1a1a1a;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
 
-    .price-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
+    .method-item {
+      padding: 1rem 0;
       border-bottom: 1px solid #e0e0e0;
     }
 
-    .price-item:last-child {
+    .method-item:last-child {
       border-bottom: none;
     }
 
-    .price-label {
-      font-size: 1rem;
-      color: #444;
-    }
-
-    .price-amount {
-      font-size: 1.25rem;
+    .method-title {
       font-weight: 700;
+      font-size: 1.05rem;
       color: #1a1a1a;
+      margin-bottom: 0.5rem;
     }
 
-    .proof-info {
+    .method-details {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .d17-details {
       padding: 1rem;
       border: 2px solid #e0e0e0;
       border-radius: 4px;
@@ -161,16 +163,23 @@
       background: #f9f9f9;
     }
 
-    .proof-info h3 {
+    .d17-details h3 {
       font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
       color: #1a1a1a;
     }
 
-    .proof-info p {
+    .d17-details p {
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
+    }
+
+    .d17-details .highlight {
+      background: #fff;
+      padding: 0.5rem;
+      border-left: 3px solid #0066cc;
+      margin: 0.5rem 0;
     }
 
     .social-media {
@@ -212,6 +221,16 @@
       color: #1a1a1a;
     }
 
+    .warning {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      font-weight: 500;
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 1.5rem 1rem;
@@ -228,87 +247,83 @@
       p, li {
         font-size: 0.95rem;
       }
-
-      .price-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
     }
   </style>
 </head>
 
 <body>
-  <h1>Welcome to Coder X Coder Event! 🎉</h1>
+  <h1>Cybersummit 4th Edition 🚀</h1>
 
   <p class="greeting">
-    Hello <strong>{{NAME}}</strong>,
+    Dear <strong>{{NAME}}</strong>,
   </p>
 
   <p>
-    We're excited to have you join Coder X Coder! 🚀
+    Thank you for registering for <strong>Cybersummit 4th Edition</strong>!
   </p>
 
-  <div class="event-details">
-    <h2>📅 Event Details</h2>
-    <p><strong>📍 Location:</strong> Polytechnique Sousse</p>
-    <p><strong>🗓️ Date:</strong> February 14-15, 2025</p>
-    <p><strong>🕐 Time:</strong> Starting at 12:00 PM on February 14</p>
-  </div>
-
-  <div class="pricing">
-    <h2>💰 Ticket Pricing</h2>
-    <div class="price-item">
-      <span class="price-label">Microsoft Members</span>
-      <span class="price-amount">10 DT</span>
-    </div>
-    <div class="price-item">
-      <span class="price-label">Non-Members</span>
-      <span class="price-amount">15 DT</span>
-    </div>
+  <div class="warning">
+    ⚠️ <strong>Important:</strong> We noticed that your registration is not yet completed, as the payment has not been received.
   </div>
 
   <p>
-    To confirm your participation, please proceed with the payment using one of the following methods:
+    To confirm your spot, you can choose one of the following payment methods:
   </p>
 
-  <h2>Payment Options</h2>
-  
-  <ul>
-    <li><strong>D17 Transfer:</strong> Send to the number <strong>53 282 993</strong></li>
-    <li><strong>Hand-to-hand Payment:</strong> Visit our registration stand or contact <strong>25 171 692</strong></li>
-  </ul>
+  <div class="payment-methods">
+    <h2>💳 Payment Methods</h2>
+    
+    <div class="method-item">
+      <div class="method-title">📍 On-site payment</div>
+      <div class="method-details">
+        You can pay directly at our stand in your university.
+      </div>
+    </div>
+    
+    <div class="method-item">
+      <div class="method-title">📱 D17 payment</div>
+      <div class="method-details">
+        Send the participation fee via D17 to <strong>99 519 602</strong>
+      </div>
+    </div>
+  </div>
 
-  <div class="proof-info">
-    <h3>📸 Payment Proof Submission (Important!)</h3>
-    <p>After completing your D17 transfer, please send a screenshot of the payment confirmation</p>
-    <p style="margin-top: 1rem;"><strong>Send to:</strong></p>
-    <p><strong>• WhatsApp:</strong> <strong>53 282 993</strong> or <strong>25 171 692</strong></p>
-    <p><strong>• Email:</strong> <a href="mailto:microsoftissatso@gmail.com">microsoftissatso@gmail.com</a></p>
+  <div class="d17-details">
+    <h3>📸 After D17 Payment</h3>
+    <p>After completing the payment, please send us:</p>
+    <div class="highlight">
+      <p>• Your <strong>confirmation code</strong></p>
+      <p>• Your <strong>email address</strong></p>
+    </div>
+    <p>via WhatsApp on the same number: <strong>99 519 602</strong></p>
   </div>
 
   <div class="important">
     <p>
-      <strong>Important:</strong> Please complete the payment as soon as possible, as places are limited.
+      ⚠️ <strong>Your registration will only be confirmed after payment.</strong>
     </p>
   </div>
 
+  <div class="event-details">
+    <h2>📅 Event Details</h2>
+    <p><strong>📍 Location:</strong> ESPITA Sousse</p>
+    <p><strong>🗓️ Date:</strong> April 11–12, 2025</p>
+  </div>
+
   <p>
-    If you have any questions regarding the payment or the event, feel free to contact us.
+    We look forward to having you with us!
   </p>
 
   <div class="social-media">
-    <h3>📱 Follow Our Social Media for More Details</h3>
-    <a href="https://www.facebook.com/MicrosoftISSATSO" target="_blank">🔵 Facebook: MicrosoftISSATSO</a>
-    <a href="https://www.instagram.com/mic.issatso/" target="_blank">📷 Instagram: @mic.issatso</a>
-    <a href="https://www.linkedin.com/company/microsoft-issatso-club" target="_blank">💼 LinkedIn: Microsoft ISSATSO Club</a>
+    <h3>📱 Follow CyberTrace Club</h3>
+    <a href="https://www.facebook.com/CyberTraceClub" target="_blank">🔵 Facebook: CyberTraceClub</a>
+    <a href="https://www.instagram.com/cyber_trace_issatso/" target="_blank">📷 Instagram: @cyber_trace_issatso</a>
+    <a href="https://www.linkedin.com/company/cyber-trace/posts/?feedView=all" target="_blank">💼 LinkedIn: Cyber Trace</a>
   </div>
 
   <div class="closing">
-    <p>Looking forward to seeing you at Coder X Coder! 😊</p>
-    
-    <p>Warm regards,</p>
-    <p class="signature">Microsoft ISSATSO Team</p>
+    <p>Best regards,</p>
+    <p class="signature">CyberTrace Club – ISSAT Sousse</p>
   </div>
 </body>
 

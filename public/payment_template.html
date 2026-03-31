@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Coder X Coder Event!</title>
+  <title>Cybersummit 4th Edition - Registration Confirmed!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -97,20 +97,57 @@
       color: #000;
     }
 
-    .qrcode {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 2rem 0;
+    .event-features {
       padding: 1.5rem;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
     }
 
-    .qrcode img {
-      max-width: 100%;
-      height: auto;
+    .event-features h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
+
+    .feature-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .feature-list li {
+      border-left: 3px solid #22c55e;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 0 0.5rem 1.5rem;
+    }
+
+    .feature-list li::before {
+      content: "✨";
+      left: 0;
+      color: #22c55e;
+    }
+
+    .event-details {
+      padding: 1.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: #f9f9f9;
+    }
+
+    .event-details h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .event-details p {
+      margin-bottom: 0.75rem;
+    }
+
     .social-media {
       padding: 1.5rem;
       border: 2px solid #e0e0e0;
@@ -137,16 +174,18 @@
     .social-media a:hover {
       text-decoration: underline;
     }
-    .code-info {
-      text-align: center;
+
+    .info-box {
+      background: #e6f7ff;
+      border-left: 4px solid #1890ff;
       padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
       margin: 1.5rem 0;
+      border-radius: 4px;
     }
 
-    .code-info p {
+    .info-box p {
       margin: 0;
+      color: #0050b3;
     }
 
     .closing {
@@ -177,64 +216,61 @@
       p, li {
         font-size: 0.95rem;
       }
-
-      .qrcode {
-        padding: 1rem;
-      }
     }
   </style>
 </head>
 
 <body>
-  <h1>Welcome to Coder X Coder Event! 🎉</h1>
+  <h1>Cybersummit 4th Edition 🚀</h1>
 
   <p class="confirmation">
-    ✅ Payment Confirmed!
+    ✅ Registration Successfully Confirmed!
   </p>
 
   <p class="greeting">
-    Hello <strong>{{NAME}}</strong>,
+    Dear <strong>{{NAME}}</strong>,
   </p>
 
   <p>
-    Thank you for registering for <strong>Coder X Coder</strong>! 💻✨
+    Your registration for <strong>Cybersummit 4th Edition</strong> has been successfully confirmed ✅
   </p>
 
   <p>
-    We're really happy and excited to see your interest in our event 😊
+    We're excited to have you join us for this experience filled with:
   </p>
 
-  <h2>📌 Event Details</h2>
-  
-  <ul>
-    <li>📅 <strong>Date:</strong> February 14th-15th, 2026</li>
-    <li>📍 <strong>Location:</strong> Polytech School</li>
-    <li>⏰ <strong>Check-in Time:</strong> Starts at 11:30 AM on February 14th</li>
-    <li>🕐 <strong>Duration:</strong> 24-hour event</li>
-  </ul>
-
-  <h2>🎫 Your Check-in Information</h2>
-
-  <div class="qrcode">
-    <img src="{{QR_CODE}}" alt="QR Code" style="width: 700px; height: 200px" />
+  <div class="event-features">
+    <ul class="feature-list">
+      <li>🎤 Inspiring conferences</li>
+      <li>💻 Hands-on workshops</li>
+      <li>🏆 An overnight <strong>CTF competition</strong></li>
+    </ul>
   </div>
 
-  <div class="code-info">
-    <p>Or check in by showing this code: <strong>{{SHORT_CODE}}</strong></p>
+  <div class="event-details">
+    <h2>📅 Event Details</h2>
+    <p><strong>📍 Location:</strong> ESPITA Sousse</p>
+    <p><strong>📅 Date:</strong> April 11–12</p>
   </div>
-  
+
+  <div class="info-box">
+    <p>📧 <strong>Stay tuned!</strong> You will receive more details soon, including workshop selection and event logistics.</p>
+  </div>
+
+  <p>
+    We can't wait to see you there!
+  </p>
+
   <div class="social-media">
-    <h3>📱 Follow Our Social Media for More Details</h3>
-    <a href="https://www.facebook.com/MicrosoftISSATSO" target="_blank">🔵 Facebook: MicrosoftISSATSO</a>
-    <a href="https://www.instagram.com/mic.issatso/" target="_blank">📷 Instagram: @mic.issatso</a>
-    <a href="https://www.linkedin.com/company/microsoft-issatso-club" target="_blank">💼 LinkedIn: Microsoft ISSATSO Club</a>
+    <h3>📱 Follow CyberTrace Club</h3>
+    <a href="https://www.facebook.com/CyberTraceClub" target="_blank">🔵 Facebook: CyberTraceClub</a>
+    <a href="https://www.instagram.com/cyber_trace_issatso/" target="_blank">📷 Instagram: @cyber_trace_issatso</a>
+    <a href="https://www.linkedin.com/company/cyber-trace/posts/?feedView=all" target="_blank">💼 LinkedIn: Cyber Trace</a>
   </div>
 
   <div class="closing">
-    <p>Best of luck, and may the odds be ever in your favor!</p>
-    
-    <p>Warm regards,</p>
-    <p class="signature">Microsoft ISSATSO Team</p>
+    <p>Best regards,</p>
+    <p class="signature">CyberTrace Club – ISSAT Sousse</p>
   </div>
 </body>
 
