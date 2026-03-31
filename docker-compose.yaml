@@ -27,7 +27,7 @@ services:
     container_name: cyber_summit_api
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-3000}:3000"  # This maps container port 3000 to host port 3000
+      - "${APP_PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-cyber_summit}
@@ -46,7 +46,9 @@ services:
     container_name: cyber_summit_frontend
     restart: unless-stopped
     ports:
-      - "${FRONTEND_PORT:-8080}:80"  # Maps container port 80 to host port 8080
+      - "${FRONTEND_PORT:-8080}:80"
+    env_file:
+      - ../registration-checkin-front/.env  # Use the frontend .env file
     depends_on:
       - api
     networks:
