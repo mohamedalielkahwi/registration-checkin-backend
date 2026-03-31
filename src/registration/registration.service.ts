@@ -516,7 +516,7 @@ export class RegistrationService {
           isPaid,
           shortCode: code,
           admin:{
-            connect: { id: paidToId??null }
+            connect: paidToId ? { id: paidToId } : undefined,
           },
           workshops: {
             create: [

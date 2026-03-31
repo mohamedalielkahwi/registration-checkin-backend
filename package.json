@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prisma generate",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.11.2",
