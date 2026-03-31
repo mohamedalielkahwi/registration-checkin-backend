@@ -31,6 +31,7 @@ services:
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-cyber_summit}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
     env_file:
       - .env
     depends_on:

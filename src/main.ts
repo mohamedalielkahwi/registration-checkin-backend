@@ -11,8 +11,8 @@ async function bootstrap() {
   app.enableCors({
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Authorization',
-    origin: '*',
-    credentials:true
+    origin: process.env.FRONTEND_URL || 'http://localhost:8080',
+    credentials: true,
   });
 
   initSecurityConfig(app);
@@ -21,6 +21,6 @@ async function bootstrap() {
 
   initGlobalConfig(app);
 
-  await app.listen(process.env.PORT || 3000,'0.0.0.0');
+  await app.listen(process.env.PORT || 3000, '0.0.0.0');
 }
 bootstrap();
