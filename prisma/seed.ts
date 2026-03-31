@@ -183,10 +183,10 @@ async function seedAttendees() {
 }
 
 async function main() {
-  await seedWorkshops();
+  // await seedWorkshops();
   await seedFacs();
-  await seedTeams();
-  await seedAttendees();
+  // await seedTeams();
+  // await seedAttendees();
   await seedAdmins();
 }
 
