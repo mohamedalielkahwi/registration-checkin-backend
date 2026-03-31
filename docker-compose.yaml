@@ -1,7 +1,4 @@
 services:
-  # ─────────────────────────────────────────
-  # PostgreSQL Database
-  # ─────────────────────────────────────────
   db:
     image: postgres:16-alpine
     container_name: cyber_summit_db
@@ -19,10 +16,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - cyber_summit_network
 
-  # ─────────────────────────────────────────
-  # NestJS Backend
-  # ─────────────────────────────────────────
   api:
     build:
       context: .
@@ -40,6 +36,27 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - cyber_summit_network
+
+  frontend:
+    build:
+      context: ../registration-checkin-front
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://api:3000  # Override the API URL for Docker
+    container_name: cyber_summit_frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      - api
+    networks:
+      - cyber_summit_network
+
+networks:
+  cyber_summit_network:
+    driver: bridge
 
 volumes:
   postgres_data:
