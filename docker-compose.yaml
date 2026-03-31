@@ -27,7 +27,7 @@ services:
     container_name: cyber_summit_api
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-3000}:3000"
+      - "${APP_PORT:-3000}:3000"  # This maps container port 3000 to host port 3000
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-cyber_summit}
@@ -43,12 +43,10 @@ services:
     build:
       context: ../registration-checkin-front
       dockerfile: Dockerfile
-      args:
-        - VITE_API_URL=http://api:3000  # Override the API URL for Docker
     container_name: cyber_summit_frontend
     restart: unless-stopped
     ports:
-      - "${FRONTEND_PORT:-8080}:80"
+      - "${FRONTEND_PORT:-8080}:80"  # Maps container port 80 to host port 8080
     depends_on:
       - api
     networks:
