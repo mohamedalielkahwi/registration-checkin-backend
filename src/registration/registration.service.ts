@@ -64,11 +64,9 @@ export class RegistrationService {
       where: { ticketNo: attendee.ticket.ticketNo },
       data: { isPaid: !attendee.ticket.isPaid ,adminId},
     });
-    const FullTicket = await this.overlayToTicket();
     await this.sendPaymentConfirmationEmail(
       attendee.email,
       attendee.name,
-      FullTicket,
       attendee.ticket.shortCode,
     );
     await this.refreshCache();
@@ -293,11 +291,11 @@ export class RegistrationService {
     const { email, name, isPaid } = createRegistrationDto;
     // const fullTicket = await this.overlayToTicket();
     //send email
-    // if (isPaid) {
-    //   await this.sendPaymentConfirmationEmail(email, name, fullTicket, code);
-    // } else {
-    //   await this.sendEmail(email, name);
-    // }
+    if (isPaid) {
+      await this.sendPaymentConfirmationEmail(email, name, code);
+    } else {
+      await this.sendEmail(email, name);
+    }
     await this.refreshCache();
     return { message: 'Registration successful' };
   }
@@ -594,7 +592,6 @@ export class RegistrationService {
   async sendPaymentConfirmationEmail(
     to: string,
     name: string,
-    qr: string,
     shortcode: string,
   ) {
     const template = fs.readFileSync('public/payment_template.html', 'utf8');
