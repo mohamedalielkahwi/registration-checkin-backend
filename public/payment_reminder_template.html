@@ -103,6 +103,27 @@
       font-weight: 500;
     }
 
+    .urgent {
+      padding: 1.25rem;
+      border: 2px solid #d32f2f;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      background: #ffebee;
+      text-align: center;
+    }
+
+    .urgent p {
+      margin: 0;
+      color: #b71c1c;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .urgent .clock {
+      font-size: 1.3rem;
+      margin-right: 0.5rem;
+    }
+
     .event-details {
       padding: 1.5rem;
       border: 2px solid #e0e0e0;
@@ -249,6 +270,17 @@
       color: #0d47a1;
     }
 
+    .price-badge {
+      background: #2e7d32;
+      color: white;
+      font-weight: 700;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 1.5rem 1rem;
@@ -276,6 +308,14 @@
     Dear <strong>{{NAME}}</strong>,
   </p>
 
+  <!-- New urgent midnight deadline message -->
+  <div class="urgent">
+    <p>
+      <span class="clock">⏳</span> <strong>Last chance – midnight deadline!</strong> <span class="clock">⏳</span><br>
+      You have only a few hours left to secure your spot. Don't let your registration expire.
+    </p>
+  </div>
+
   <p>
     This is a friendly reminder to complete your payment for <strong>Cybersummit 4th Edition</strong>.
   </p>
@@ -285,6 +325,10 @@
       ⚠️ <strong>Important Notice:</strong> Your spot is not yet confirmed, and places are limited.
     </p>
   </div>
+
+  <p style="text-align: center; margin: 1rem 0;">
+    <span class="price-badge">💰 Participation fee: 15 DT</span>
+  </p>
 
   <p>
     You can finalize your registration using one of the following methods:
@@ -296,14 +340,14 @@
     <div class="method-item">
       <div class="method-title">📍 On-site payment</div>
       <div class="method-details">
-        At our stand in your university
+        At our stand in your university – <strong>15 DT</strong>
       </div>
     </div>
     
     <div class="method-item">
       <div class="method-title">📱 D17 payment</div>
       <div class="method-details">
-        Send the fee to <strong>99 519 602</strong>
+        Send <strong>15 DT</strong> to <strong>99 519 602</strong>
       </div>
     </div>
   </div>
@@ -320,7 +364,7 @@
 
   <div class="warning-box">
     <p>
-      ⚠️ Please note that unpaid registrations may be canceled.
+      ⚠️ Please note that unpaid registrations may be canceled after tonight.
     </p>
   </div>
 

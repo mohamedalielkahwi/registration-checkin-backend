@@ -8,22 +8,26 @@ import {
 const prisma = new PrismaClient();
 
 async function seedWorkshops() {
+  await prisma.workshopsByTicket.deleteMany(); 
+  await prisma.workshop.deleteMany();
   const workshopsData = [
-    { name: 'N8N: Workflow Automation in Action', session: Session.first },
+    // First Session
     {
-      name: 'Backend: Clean architecture & best Practices',
+      name: 'Prompt Injection: Breaking the AI Mind',
       session: Session.first,
     },
     {
-      name: 'Design Patterns: Writing Scalable & Maintainable Code',
+      name: 'The Augmented Attacker: How AI Rewrites the Rules of Penetration',
+      session: Session.first,
+    },
+
+    // Second Session
+    {
+      name: 'The Compliance Battlefield: Turning Theory into Strategy',
       session: Session.second,
     },
     {
-      name: 'Generative AI: Creating generative models from scratch',
-      session: Session.second,
-    },
-    {
-      name: 'How to win a Hackathon: Keys to Hackathon Success',
+      name: 'Lights Out on the Dark Web: Proactive Intelligence and the Shifting Hacker Landscape',
       session: Session.second,
     },
   ];
@@ -183,11 +187,11 @@ async function seedAttendees() {
 }
 
 async function main() {
-  // await seedWorkshops();
-  await seedFacs();
+  await seedWorkshops();
+  // await seedFacs();
   // await seedTeams();
   // await seedAttendees();
-  await seedAdmins();
+  // await seedAdmins();
 }
 
 main()
